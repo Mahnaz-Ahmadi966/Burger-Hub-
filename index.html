@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Burger Hub - fresh burgers, pizza, fries, chicken and more, made fast and delivered hot.">
+  <title>Burger Hub | Good Food, Fast &amp; Fresh</title>
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body id="top">
+
+  <!--===== HEADER & NAVIGATION ======-->
+  <header class="site-header" id="site-header">
+    <div class="container header-inner">
+
+      <a href="#home" class="logo" id="site-logo" aria-label="Burger Hub - go to homepage">
+        <span class="logo-icon" aria-hidden="true">🍔</span>
+        <span class="logo-text">Burger Hub</span>
+      </a>
+
+      <button type="button" class="nav-toggle" id="nav-toggle" aria-label="Open main menu" aria-controls="main-nav"
+        aria-expanded="false">
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+      </button>
+
+      <nav class="main-nav" id="main-nav" aria-label="Main navigation">
+        <ul class="nav-list">
+          <li><a href="#home" class="nav-link">Home</a></li>
+          <li><a href="#menu" class="nav-link">Menu</a></li>
+          <li><a href="#offers" class="nav-link">Offers</a></li>
+          <li><a href="#about" class="nav-link">About Us</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+
+      <button type="button" class="theme-toggle" id="theme-toggle" aria-label="switch to dark mode">
+        <span id="theme-icon" aria-hidden="true">Light</span>
+      </button>
+
+
+      <button type="button" class="btn btn-primary order-online-btn" id="order-online-btn">
+        <span class="btn-icon" aria-hidden="true">🛒 Order Online</span>
+        
+        <span class="cart-count" id="cart-count" aria-live="polite" aria-label="Items in cart">0</span>
+      </button>
+
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <!--==== HERO SECTION ====-->
+    <section class="hero" id="home" aria-labelledby="hero-title">
+      <div class="container hero-inner">
+
+        <div class="hero-content">
+          <p class="hero-kicker">Cravings, Satisfied</p>
+          <h1 class="hero-title" id="hero-title">GOOD FOOD <span class="hero-title-accent">FAST &amp; FRESH</span></h1>
+          <p class="hero-description">
+            At Burger Hub we flame-grill juicy burgers, fry golden fries and bake hot pizzas
+            with fresh ingredients every single day, so you get great taste in minutes.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#menu" class="btn btn-primary" id="hero-order-btn">ORDER NOW</a>
+            <button type="button" class="btn btn-secondary" id="watch-video-btn" data-video-target="video-modal">
+              <span class="btn-icon" aria-hidden="true">▶</span>
+              WATCH VIDEO
+            </button>
+          </div>
+
+          <ul class="hero-benefits" id="hero-benefits">
+            <li class="benefit-item">
+              <span class="benefit-icon" aria-hidden="true">🚚</span>
+              <span class="benefit-text">Fast Delivery</span>
+            </li>
+            <li class="benefit-item">
+              <span class="benefit-icon" aria-hidden="true">🏅</span>
+              <span class="benefit-text">Best Quality</span>
+            </li>
+            <li class="benefit-item">
+              <span class="benefit-icon" aria-hidden="true">🏷️</span>
+              <span class="benefit-text">Great Offers</span>
+            </li>
+          </ul>
+        </div>
+
+        <figure class="hero-media">
+          <img src="images/hero-burger.jpeg" class="hero-image" id="hero-image" alt="Double cheeseburger " width="600"
+            height="500">
+          <figcaption class="hero-badge" id="hero-badge">
+            <span class="badge-number">100%</span>
+            <span class="badge-text">Fresh Ingredients</span>
+          </figcaption>
+        </figure>
+
+      </div>
+
+      <!-- Video modal placeholder (opened later with JavaScript) -->
+      <dialog class="video-modal" id="video-modal" aria-labelledby="video-modal-title">
+        <h2 class="video-modal-title" id="video-modal-title">Burger Hub Story</h2>
+        <div class="video-placeholder" id="video-placeholder">
+          <video controls width="100%">
+            <source src="videos/burger-video.mp4.mp4" type="video/mp4">
+          </video>
+        </div>
+        <button type="button" class="btn btn-secondary" id="close-video-btn">Close</button>
+      </dialog>
+    </section>
+
+    <!-- ================= FOOD CATEGORIES ================= -->
+    <section class="categories" id="categories" aria-labelledby="categories-title">
+      <div class="container">
+        <header class="section-header">
+          <p class="section-kicker">What are you craving?</p>
+          <h2 class="section-title" id="categories-title">Explore Our Categories</h2>
+        </header>
+
+        <ul class="category-list" id="category-list">
+          <li class="category-item" data-category="burgers">
+            <a href="#menu" class="category-link">
+              <span class="category-icon" aria-hidden="true">🍔</span>
+              <h3 class="category-title">Burgers</h3>
+              <p class="category-description">Juicy grilled patties stacked high.</p>
+            </a>
+          </li>
+          <li class="category-item" data-category="fries">
+            <a href="#menu" class="category-link">
+              <span class="category-icon" aria-hidden="true">🍟</span>
+              <h3 class="category-title">Fries</h3>
+              <p class="category-description">Crispy, golden and perfectly salted.</p>
+            </a>
+          </li>
+          <li class="category-item" data-category="pizza">
+            <a href="#menu" class="category-link">
+              <span class="category-icon" aria-hidden="true">🍕</span>
+              <h3 class="category-title">Pizza</h3>
+              <p class="category-description">Hot, cheesy slices from our oven.</p>
+            </a>
+          </li>
+          <li class="category-item" data-category="drinks">
+            <a href="#menu" class="category-link">
+              <span class="category-icon" aria-hidden="true">🥤</span>
+              <h3 class="category-title">Drinks</h3>
+              <p class="category-description">Ice-cold sodas, shakes and juices.</p>
+            </a>
+          </li>
+          <li class="category-item" data-category="chicken">
+            <a href="#menu" class="category-link">
+              <span class="category-icon" aria-hidden="true">🍗</span>
+              <h3 class="category-title">Chicken</h3>
+              <p class="category-description">Crunchy, tender and full of flavor.</p>
+            </a>
+          </li>
+          <li class="category-item" data-category="desserts">
+            <a href="#menu" class="category-link">
+              <span class="category-icon" aria-hidden="true">🍦</span>
+              <h3 class="category-title">Desserts</h3>
+              <p class="category-description">Sweet treats to finish your meal.</p>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ================= BEST SELLERS ================= -->
+    <section class="bestsellers" id="menu" aria-labelledby="bestsellers-title">
+      <div class="container">
+        <header class="section-header">
+          <p class="section-kicker">Popular Picks</p>
+          <h2 class="section-title" id="bestsellers-title">Our Bestsellers</h2>
+        </header>
+
+        <div class="product-grid" id="product-grid">
+
+          <article class="product-card" id="product-1" data-product-id="1" data-product-name="Classic Cheese Burger"
+            data-product-price="5.49">
+            <img src="images/classic-burger.jpg" class="product-image"
+              alt="Classic cheese burger with melted cheddar, lettuce and tomato" width="300" height="220"
+              loading="lazy">
+            <div class="product-body">
+              <h3 class="product-name">Classic Cheese Burger</h3>
+              <p class="product-description">Beef patty, melted cheddar, lettuce, tomato and our house sauce.</p>
+              <div class="product-footer">
+                <p class="product-price"><data value="5.49">$5.49</data></p>
+                <button type="button" class="btn btn-primary add-to-cart-btn" data-product-id="1"
+                  data-product-name="Classic Cheese Burger" data-product-price="5.49"
+                  aria-label="Add Classic Cheese Burger to cart">Add to Cart</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="product-card" id="product-2" data-product-id="2" data-product-name="Veggie Supreme Pizza"
+            data-product-price="8.99">
+            <img src="images/veggie-pizza.jpeg" class="product-image"
+              alt="Veggie supreme pizza topped with peppers, olives and mushrooms" width="300" height="220"
+              loading="lazy">
+            <div class="product-body">
+              <h3 class="product-name">Veggie Supreme Pizza</h3>
+              <p class="product-description">Peppers, olives, mushrooms and mozzarella on a crispy crust.</p>
+              <div class="product-footer">
+                <p class="product-price"><data value="8.99">$8.99</data></p>
+                <button type="button" class="btn btn-primary add-to-cart-btn" data-product-id="2"
+                  data-product-name="Veggie Supreme Pizza" data-product-price="8.99"
+                  aria-label="Add Veggie Supreme Pizza to cart">Add to Cart</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="product-card" id="product-3" data-product-id="3" data-product-name="Crispy Chicken Strips"
+            data-product-price="5.99">
+            <img src="images/chicken-strips.jpg" class="product-image"
+              alt="Golden crispy chicken strips served with dipping sauce" width="300" height="220" loading="lazy">
+            <div class="product-body">
+              <h3 class="product-name">Crispy Chicken Strips</h3>
+              <p class="product-description">Tender chicken in a crunchy coating, served with dip.</p>
+              <div class="product-footer">
+                <p class="product-price"><data value="5.99">$5.99</data></p>
+                <button type="button" class="btn btn-primary add-to-cart-btn" data-product-id="3"
+                  data-product-name="Crispy Chicken Strips" data-product-price="5.99"
+                  aria-label="Add Crispy Chicken Strips to cart">Add to Cart</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="product-card" id="product-4" data-product-id="4" data-product-name="Peri Peri Fries"
+            data-product-price="2.99">
+            <img src="images/peri-peri-fries.jpg" class="product-image"
+              alt="Hot peri peri seasoned french fries in a paper tray" width="300" height="220" loading="lazy">
+            <div class="product-body">
+              <h3 class="product-name">Peri Peri Fries</h3>
+              <p class="product-description">Crispy fries tossed in a spicy peri peri seasoning.</p>
+              <div class="product-footer">
+                <p class="product-price"><data value="2.99">$2.99</data></p>
+                <button type="button" class="btn btn-primary add-to-cart-btn" data-product-id="4"
+                  data-product-name="Peri Peri Fries" data-product-price="2.99"
+                  aria-label="Add Peri Peri Fries to cart">Add to Cart</button>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PROMOTIONAL BANNER ================= -->
+    <section class="promo" id="offers" aria-labelledby="promo-title">
+      <div class="container promo-inner">
+
+        <div class="promo-content">
+          <h2 class="promo-title" id="promo-title">FRESH FOOD, FAST TO YOU!</h2>
+          <p class="promo-text">Hot, tasty &amp; delivered</p>
+
+          <div class="promo-offer" id="promo-offer">
+            <p class="promo-offer-text">20% OFF YOUR FIRST ORDER</p>
+            <p class="promo-code-label">
+              Use code:
+              <strong class="promo-code" id="promo-code">WELCOME20</strong>
+            </p>
+          </div>
+        </div>
+
+        <img src="images/delivery-banner.jpeg" class="promo-image" id="promo-image"
+          alt="Burger Hub delivery rider on a scooter carrying a food order" width="480" height="360" loading="lazy">
+
+      </div>
+    </section>
+
+    <!-- ================= ABOUT US ================= -->
+    <section class="about" id="about" aria-labelledby="about-title">
+      <div class="container about-inner">
+
+        <img src="images/restaurant.jpg" class="about-image" id="about-image"
+          alt="Inside the Burger Hub restaurant with a busy open kitchen and friendly staff" width="560" height="420"
+          loading="lazy">
+
+        <div class="about-content">
+          <p class="section-kicker">About Us</p>
+          <h2 class="section-title" id="about-title">Welcome to Burger Hub</h2>
+          <p class="about-text">
+            Burger Hub was started with one simple idea: great fast food should also be fresh food.
+            We choose quality ingredients, prepare every order to be hot and tasty, and
+            care about each customer leaving with a smile. From our first burger to your next
+            meal, customer satisfaction is what drives us.
+          </p>
+          <a href="#contact" class="btn btn-secondary" id="about-contact-link">Get in Touch</a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= CONTACT ================= -->
+    <section class="contact" id="contact" aria-labelledby="contact-title">
+      <div class="container">
+        <header class="section-header">
+          <p class="section-kicker">Contact</p>
+          <h2 class="section-title" id="contact-title">We'd Love to Hear From You</h2>
+        </header>
+
+        <form class="contact-form" id="contact-form" action="#" method="post" aria-describedby="form-feedback">
+
+          <div class="form-group">
+            <label for="contact-name">Full Name</label>
+            <input type="text" id="contact-name" name="fullName" autocomplete="name" placeholder="Your full name"
+              required>
+            <p class="form-error" id="contact-name-error" role="alert" hidden></p>
+          </div>
+
+          <div class="form-group">
+            <label for="contact-email">Email Address</label>
+            <input type="email" id="contact-email" name="email" autocomplete="email" placeholder="you@example.com"
+              required>
+            <p class="form-error" id="contact-email-error" role="alert" hidden></p>
+          </div>
+
+          <div class="form-group">
+            <label for="contact-subject">Subject</label>
+            <input type="text" id="contact-subject" name="subject" placeholder="What is this about?" required>
+            <p class="form-error" id="contact-subject-error" role="alert" hidden></p>
+          </div>
+
+          <div class="form-group">
+            <label for="contact-message">Message</label>
+            <textarea id="contact-message" name="message" rows="5" placeholder="Write your message here..."
+              required></textarea>
+            <p class="form-error" id="contact-message-error" role="alert" hidden></p>
+          </div>
+
+          <button type="submit" class="btn btn-primary" id="contact-submit-btn">Send Message</button>
+
+          <!-- Success / error feedback shown later with JavaScript -->
+          <p class="form-feedback" id="form-feedback" role="status" aria-live="polite" hidden></p>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="site-footer" id="site-footer">
+    <div class="container footer-inner">
+
+      <section class="footer-brand" aria-labelledby="footer-brand-title">
+        <p class="logo footer-logo" id="footer-brand-title">
+          <span class="logo-icon" aria-hidden="true">🍔</span>
+          <span class="logo-text">Burger Hub</span>
+        </p>
+        <p class="footer-description">Fresh, fast and full of flavor. Burgers, pizza, fries and more, made just for you.
+        </p>
+      </section>
+
+      <nav class="footer-nav" aria-labelledby="footer-nav-title">
+        <h2 class="footer-heading" id="footer-nav-title">Quick Links</h2>
+        <ul class="footer-list">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#menu">Menu</a></li>
+          <li><a href="#offers">Offers</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <section class="footer-contact" aria-labelledby="footer-contact-title">
+        <h2 class="footer-heading" id="footer-contact-title">Contact Info</h2>
+        <address class="footer-address">
+          <p>123 Burger Street, Your City</p>
+          <p><a href="tel:+10000000000">+1 (000) 000-0000</a></p>
+          <p><a href="mailto:hello@burgerhub.example">hello@burgerhub.example</a></p>
+          <p>Open daily: 10:00 AM – 11:00 PM</p>
+        </address>
+      </section>
+
+      <section class="footer-social" aria-labelledby="footer-social-title">
+        <h2 class="footer-heading" id="footer-social-title">Follow Us</h2>
+        <ul class="social-list">
+          <li><a href="https://github.com/Mahnaz-Ahmadi966" class="social-link" aria-label="Burger Hub on GitHub">GitHub</a></li>
+          <li><a href="mailto:mahnazahmadi848@gmail.com" class="social-link" aria-label="Burger Hub on Email">Email</a></li>
+          <li><a href="https://x.com/MahnazAhmadi_" class="social-link" aria-label="Burger Hub on X (Twitter)">X</a></li>
+          <li><a href="https://www.linkedin.com/in/mahnaz-ahmadi-735775399?utm_source=share_via&utm_content=profile&utm_medium=member_android" class="social-link" aria-label="Burger Hub on LinkedIn">LinkedIn</a></li>
+        </ul>
+      </section>
+
+    </div>
+
+    <p class="copyright" id="copyright">&copy; 2026 Burger Hub. All rights reserved.</p>
+  </footer>
+
+  <script src="./js/script.js" defer></script>
+</body>
+
+</html>
