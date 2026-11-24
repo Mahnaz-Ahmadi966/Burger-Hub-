@@ -1,0 +1,784 @@
+/* ==========================================================
+   BURGER HUB - style.css
+   Warm cream background, dark green text, orange highlights
+   ========================================================== */
+
+/* ---------- 1. Design tokens ---------- */
+:root {
+  --cream: #fbf3e4;
+  --cream-dark: #f3e6cc;
+  --green-dark: #1f3d2b;
+  --green-olive: #6b7a3a;
+  --orange: #f28c28;
+  --orange-dark: #d9741a;
+  --white: #ffffff;
+  --text-muted: #4b5f52;
+
+  /* Semantic tokens: components use these, dark mode overrides only these */
+  --bg: var(--cream);
+  --bg-alt: var(--cream-dark);
+  --surface: var(--white);
+  --text: var(--green-dark);
+  --ink-bg: var(--green-dark);      /* dark panels: promo, footer */
+  --ink-text: var(--cream);         /* text on dark panels */
+  --accent-text: var(--orange-dark);
+  --price: var(--green-olive);
+  --line: rgba(31, 61, 43, 0.25);
+  --line-soft: rgba(31, 61, 43, 0.12);
+  --error: #b3261e;
+  color-scheme: light;
+
+  --font-body: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-heading: "Trebuchet MS", "Segoe UI", Roboto, Arial, sans-serif;
+
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 28px;
+  --shadow-sm: 0 2px 8px rgba(31, 61, 43, 0.08);
+  --shadow-md: 0 10px 28px rgba(31, 61, 43, 0.14);
+  --transition: 0.25s ease;
+  --header-height: 76px;
+}
+
+
+
+
+
+/* ---------- Dark Mode ----------
+   Toggle by adding the class "dark-mode" to <body>. */
+body.dark-mode {
+  color-scheme: dark;
+
+  --bg: #18251d;
+  --bg-alt: #223329;
+  --surface: #26372c;
+  --text: #fbf3e4;
+  --text-muted: #c0cdbf;
+  --ink-bg: #101a14;
+  --ink-text: #fbf3e4;
+  --accent-text: #ff9e42;
+  --price: #a5b875;
+  --line: rgba(251, 243, 228, 0.25);
+  --line-soft: rgba(251, 243, 228, 0.12);
+  --error: #ff8a80;
+
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.25);
+  --shadow-md: 0 10px 28px rgba(0, 0, 0, 0.4);
+}
+
+/* The submit button is dark green in light mode; it would vanish on dark */
+body.dark-mode #contact-submit-btn {
+  background-color: var(--bg-alt);
+  border-color: var(--green-olive);
+}
+body.dark-mode #contact-submit-btn:hover,
+body.dark-mode #contact-submit-btn:focus-visible {
+  background-color: var(--orange);
+  border-color: var(--orange);
+}
+
+
+
+
+/* ---------- 2. Reset & base ---------- */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: var(--header-height); }
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text);
+  background-color: var(--bg);
+  overflow-x: hidden;
+  transition: background-color var(--transition), color var(--transition);
+}
+
+img { display: block; max-width: 100%; height: auto; }
+
+ul { margin: 0; padding: 0; list-style: none; }
+
+h1, h2, h3, p, figure { margin: 0; }
+
+h1, h2, h3 {
+  font-family: var(--font-heading);
+  line-height: 1.15;
+  color: var(--text);
+}
+
+a { color: inherit; text-decoration: none; }
+
+address { font-style: normal; }
+
+[hidden] { display: none !important; }
+
+:focus-visible {
+  outline: 3px solid var(--orange);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+
+/* ---------- 3. Buttons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.6rem;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  line-height: 1.2;
+  border: 2px solid transparent;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background-color var(--transition), color var(--transition),
+              border-color var(--transition), transform var(--transition),
+              box-shadow var(--transition);
+}
+
+.btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-sm); }
+.btn:active { transform: translateY(0); }
+
+.btn-primary { background-color: var(--orange); color: var(--white); }
+.btn-primary:hover { background-color: var(--orange-dark); }
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--text);
+  border-color: var(--text);
+}
+.btn-secondary:hover { background-color: var(--text); color: var(--bg); }
+
+/* ---------- 4. Header & navigation ---------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: var(--bg);
+  box-shadow: 0 1px 0 var(--line-soft);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  min-height: var(--header-height);
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--text);
+}
+.logo-icon { font-size: 1.8rem; line-height: 1; }
+
+.main-nav { margin-inline: auto; }
+
+.nav-list { display: flex; align-items: center; gap: 2rem; }
+
+.nav-link {
+  position: relative;
+  padding: 0.35rem 0;
+  font-weight: 600;
+  color: var(--text);
+  transition: color var(--transition);
+}
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--orange);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--transition);
+}
+.nav-link:hover,
+.nav-link:focus-visible { color: var(--accent-text); }
+.nav-link:hover::after,
+.nav-link:focus-visible::after { transform: scaleX(1); }
+
+.order-online-btn { white-space: nowrap; }
+
+.cart-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.5rem;
+  height: 1.5rem;
+  padding: 0 0.4rem;
+  font-size: 0.8rem;
+  color: var(--accent-text);
+  background-color: var(--surface);
+  border-radius: 999px;
+}
+
+/* Hamburger button (hidden on desktop) */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
+  padding: 10px;
+  background-color: transparent;
+  border: 2px solid var(--text);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background-color var(--transition);
+}
+.nav-toggle:hover { background-color: var(--bg-alt); }
+.nav-toggle-bar {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: var(--text);
+  border-radius: 2px;
+}
+
+/* Dark mode toggle button */
+.theme-toggle {
+  display: inline-grid;
+  place-items: center;
+  width: 80px;
+  height: 44px;
+  padding: 0;
+  font-size: 1rem;
+  line-height: 1;
+  color: var(--text);
+  background-color: transparent;
+  border: 2px solid var(--text);
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color var(--transition), transform var(--transition);
+}
+.theme-toggle:hover { background-color: var(--bg-alt); transform: rotate(15deg); }
+
+/* ---------- 5. Shared section styles ---------- */
+.section-header { text-align: center; margin-bottom: 2.5rem; }
+
+.section-kicker {
+  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-text);
+}
+
+.section-title { font-size: clamp(1.8rem, 3.5vw, 2.6rem); }
+
+.categories,
+.bestsellers,
+.about,
+.contact { padding-block: 4.5rem; }
+
+/* ---------- 6. Hero ---------- */
+.hero {
+  padding-block: 3rem 4.5rem;
+  background:
+    radial-gradient(circle at 85% 20%, rgba(242, 140, 40, 0.18), transparent 45%),
+    var(--bg);
+}
+
+.hero-inner {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  align-items: center;
+  gap: 3rem;
+}
+
+.hero-kicker {
+  margin-bottom: 0.75rem;
+  font-family: "Brush Script MT", "Segoe Script", cursive;
+  font-size: 1.8rem;
+  color: var(--accent-text);
+}
+
+.hero-title {
+  font-size: clamp(2.4rem, 6vw, 4.5rem);
+  font-weight: 900;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+}
+.hero-title-accent { color: var(--orange); }
+
+.hero-description {
+  max-width: 34rem;
+  margin-top: 1.25rem;
+  font-size: 1.1rem;
+  color: var(--text-muted);
+}
+
+.hero-actions { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2rem; }
+
+.hero-benefits {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+.benefit-item { display: flex; align-items: center; gap: 0.6rem; font-weight: 700; }
+.benefit-icon {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  font-size: 1.3rem;
+  background-color: var(--surface);
+  border-radius: 50%;
+  box-shadow: var(--shadow-sm);
+}
+
+.hero-media { position: relative; }
+.hero-image {
+  width: 100%;
+  min-height: 260px;
+  object-fit: contain;
+  background-color: var(--bg-alt);
+  border-radius: var(--radius-lg);
+}
+
+.hero-badge {
+  position: absolute;
+  left: 0;
+  bottom: 8%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 7.5rem;
+  height: 7.5rem;
+  padding: 0.5rem;
+  text-align: center;
+  color: var(--white);
+  background-color: var(--green-olive);
+  border: 4px dashed var(--bg);
+  border-radius: 50%;
+  box-shadow: var(--shadow-md);
+}
+.badge-number { font-family: var(--font-heading); font-size: 1.6rem; font-weight: 900; line-height: 1; }
+.badge-text { font-size: 0.72rem; font-weight: 700; line-height: 1.2; text-transform: uppercase; }
+
+/* Video dialog */
+.video-modal {
+  width: min(92vw, 640px);
+  padding: 1.5rem;
+  color: var(--text);
+  background-color: var(--bg);
+  border: none;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+}
+.video-modal::backdrop { background-color: rgba(31, 61, 43, 0.7); }
+.video-modal-title { margin-bottom: 1rem; font-size: 1.5rem; }
+.video-placeholder {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 16 / 9;
+  margin-bottom: 1rem;
+  color: var(--ink-text);
+  background-color: var(--ink-bg);
+  border-radius: var(--radius-sm);
+}
+
+/* ---------- 7. Food categories ---------- */
+.categories { background-color: var(--surface); }
+
+.category-list {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1.25rem;
+}
+
+.category-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  padding: 1.5rem 1rem;
+  text-align: center;
+  background-color: var(--bg);
+  border: 2px solid transparent;
+  border-radius: var(--radius-md);
+  transition: transform var(--transition), box-shadow var(--transition),
+              border-color var(--transition), background-color var(--transition);
+}
+.category-link:hover,
+.category-link:focus-visible {
+  transform: translateY(-6px);
+  background-color: var(--bg-alt);
+  border-color: var(--orange);
+  box-shadow: var(--shadow-md);
+}
+
+.category-icon {
+  display: grid;
+  place-items: center;
+  width: 4rem;
+  height: 4rem;
+  margin-bottom: 0.9rem;
+  font-size: 2rem;
+  background-color: var(--surface);
+  border-radius: 50%;
+  box-shadow: var(--shadow-sm);
+}
+.category-title { margin-bottom: 0.35rem; font-size: 1.15rem; }
+.category-description { font-size: 0.9rem; color: var(--text-muted); }
+
+/* ---------- 8. Best sellers ---------- */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.product-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background-color: var(--surface);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+.product-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-md); }
+
+.product-image {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  background-color: var(--bg-alt);
+}
+
+.product-body {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding: 1.25rem;
+}
+.product-name { margin-bottom: 0.4rem; font-size: 1.2rem; }
+.product-description { flex-grow: 1; font-size: 0.92rem; color: var(--text-muted); }
+
+.product-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-top: 1.1rem;
+}
+.product-price {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--price);
+}
+.product-footer .btn { padding: 0.6rem 1rem; font-size: 0.85rem; }
+
+/* ---------- 9. Promo banner ---------- */
+.promo {
+  padding-block: 4rem;
+  color: var(--ink-text);
+  background-color: var(--ink-bg);
+}
+.promo-inner {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  align-items: center;
+  gap: 2.5rem;
+}
+.promo-title {
+  font-size: clamp(2rem, 4.5vw, 3.4rem);
+  font-weight: 900;
+  color: var(--ink-text);
+}
+.promo-text { margin-top: 0.75rem; font-size: 1.25rem; color: var(--orange); font-weight: 600; }
+
+.promo-offer {
+  display: inline-block;
+  margin-top: 2rem;
+  padding: 1.25rem 1.75rem;
+  background-color: var(--orange);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+}
+.promo-offer-text {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: var(--white);
+}
+.promo-code-label { margin-top: 0.4rem; color: var(--green-dark); font-weight: 600; }
+.promo-code {
+  display: inline-block;
+  padding: 0.15rem 0.7rem;
+  margin-left: 0.25rem;
+  letter-spacing: 0.1em;
+  color: var(--green-dark);
+  background-color: var(--cream);
+  border: 2px dashed var(--green-dark);
+  border-radius: var(--radius-sm);
+}
+.promo-image {
+  width: 100%;
+  min-height: 200px;
+  object-fit: contain;
+  border-radius: var(--radius-md);
+}
+
+/* ---------- 10. About ---------- */
+.about-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 3rem;
+}
+.about-image {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  background-color: var(--bg-alt);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+}
+.about-content .section-kicker { text-align: left; }
+.about-content .section-title { margin-bottom: 1.25rem; }
+.about-text { margin-bottom: 1.75rem; color: var(--text-muted); font-size: 1.05rem; }
+
+/* ---------- 11. Contact form ---------- */
+.contact { background-color: var(--surface); }
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  max-width: 640px;
+  margin-inline: auto;
+  padding: 2rem;
+  background-color: var(--bg);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+
+.form-group label { font-weight: 700; }
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  font-family: inherit;
+  font-size: 1rem;
+  color: var(--text);
+  background-color: var(--surface);
+  border: 2px solid var(--line);
+  border-radius: var(--radius-sm);
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+.form-group textarea { resize: vertical; min-height: 140px; }
+.form-group input::placeholder,
+.form-group textarea::placeholder { color: #8a978e; }
+
+.form-group input:hover,
+.form-group textarea:hover { border-color: var(--green-olive); }
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--orange);
+  box-shadow: 0 0 0 4px rgba(242, 140, 40, 0.3);
+}
+
+.form-error { font-size: 0.85rem; font-weight: 600; color: var(--error); }
+
+#contact-submit-btn {
+  align-self: flex-start;
+  color: var(--white);
+  background-color: var(--ink-bg);
+}
+#contact-submit-btn:hover,
+#contact-submit-btn:focus-visible { background-color: var(--orange); color: var(--white); }
+
+.form-feedback {
+  padding: 0.85rem 1rem;
+  font-weight: 600;
+  background-color: rgba(107, 122, 58, 0.15);
+  border-left: 4px solid var(--green-olive);
+  /*border-radius: var(--radius-sm);*/
+}
+
+ /*---------- 12. Footer ---------- */
+.site-footer {
+  color: var(--ink-text);
+  background-color: var(--ink-bg);
+}
+
+.footer-inner {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1.3fr 1fr;
+  gap: 2.5rem;
+  padding-block: 3.5rem 2.5rem;
+}
+
+.footer-logo { margin-bottom: 0.75rem; color: var(--ink-text); }
+.footer-description { max-width: 22rem; color: rgba(251, 243, 228, 0.8); }
+
+.footer-heading {
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  color: var(--orange);
+}
+
+.footer-list { display: grid; gap: 0.5rem; }
+.footer-address { display: grid; gap: 0.5rem; color: rgba(251, 243, 228, 0.85); }
+
+.footer-list a,
+.footer-address a {
+  transition: color var(--transition);
+}
+.footer-list a:hover,
+.footer-address a:hover { color: var(--orange); }
+
+.social-list { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.social-link {
+  display: inline-block;
+  padding: 0.45rem 0.95rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--ink-text);
+  border: 1px solid rgba(251, 243, 228, 0.5);
+  border-radius: 999px;
+  transition: background-color var(--transition), color var(--transition),
+              border-color var(--transition), transform var(--transition);
+}
+.social-link:hover,
+.social-link:focus-visible {
+  color: var(--white);
+  background-color: var(--orange);
+  border-color: var(--orange);
+  transform: translateY(-2px);
+}
+
+.copyright {
+  padding: 1.25rem;
+  text-align: center;
+  font-size: 0.88rem;
+  color: rgba(251, 243, 228, 0.75);
+  border-top: 1px solid rgba(251, 243, 228, 0.15);
+}
+
+/* ==========================================================
+   13. RESPONSIVE DESIGN
+   ========================================================== */
+
+/* ---------- Tablet: 768px - 1023px ---------- */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .nav-list { gap: 1.1rem; }
+  .logo { font-size: 1.35rem; }
+  .order-online-btn { padding: 0.7rem 1.1rem; }
+
+  .hero-inner { gap: 2rem; }
+  .category-list { grid-template-columns: repeat(3, 1fr); }
+  .product-grid { grid-template-columns: repeat(2, 1fr); }
+  .promo-inner,
+  .about-inner { gap: 2rem; }
+  .footer-inner { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ---------- Mobile: below 768px ---------- */
+@media (max-width: 767px) {
+  :root { --header-height: 68px; }
+
+  /* Navigation adapts: hamburger + dropdown panel */
+  .header-inner { flex-wrap: wrap; gap: 0.75rem; padding-block: 0.6rem;}
+  .logo { margin-right: auto; font-size: 1.35rem; }
+  .nav-toggle { display: flex; order: 3; }
+  .order-online-btn { order: 2; padding: 0.6rem 1rem; font-size: 0.85rem; flex-shrink: 0; }
+  .theme-toggle { order: 2; position: relative;}
+
+  .main-nav {
+    display: none;
+    order: 4;
+    width: 100%;
+    margin: 0;
+    padding: 0.5rem 0 0.75rem;
+    border-top: 1px solid var(--line-soft);
+  }
+  /* Opens when the future JavaScript sets aria-expanded="true" */
+  .nav-toggle[aria-expanded="true"] ~ .main-nav,
+  .main-nav.is-open { display: block; }
+
+  .nav-list { flex-direction: column; align-items: stretch; gap: 0; }
+  .nav-link { display: block; padding: 0.8rem 0.25rem; }
+  .nav-link::after { display: none; }
+
+  .categories,
+  .bestsellers,
+  .about,
+  .contact { padding-block: 3rem; }
+
+  /* Hero stacks vertically */
+  .hero { padding-block: 2rem 3rem; }
+  .hero-inner { grid-template-columns: 1fr; gap: 2rem; text-align: center; }
+  .hero-description { margin-inline: auto; }
+  .hero-actions,
+  .hero-benefits { justify-content: center; }
+  .hero-badge { left: 4%; width: 6.25rem; height: 6.25rem; }
+
+  .category-list { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+  .product-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+  .product-footer { flex-direction: column; align-items: stretch; text-align: center; }
+
+  .promo-inner,
+  .about-inner { grid-template-columns: 1fr; text-align: center; }
+  .promo-offer { display: block; }
+  .about-content .section-kicker { text-align: center; }
+
+  .contact-form { padding: 1.25rem; }
+  #contact-submit-btn { align-self: stretch; }
+
+  .footer-inner { grid-template-columns: 1fr; text-align: center; gap: 2rem; }
+  .footer-description { margin-inline: auto; }
+  .social-list { justify-content: center; }
+}
+
+/* ---------- Small phones: single-column products ---------- */
+@media (max-width: 520px) {
+  .product-grid { grid-template-columns: 1fr; }
+  .hero-benefits { gap: 1rem; }
+}
+
+/* ---------- Large desktop: 1024px and above ---------- */
+@media (min-width: 1024px) {
+  .container { padding-inline: 2rem; }
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
